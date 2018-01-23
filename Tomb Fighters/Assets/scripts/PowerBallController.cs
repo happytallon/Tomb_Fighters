@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerBallController : MonoBehaviour
 {
     public float xspeed = 2f;
     public float yspeed = 2f;
 
-    private float _xdirection = 1f;
     private float _ydirection = 1f;
+    private float _xdirection = 1f;
+
+    private float _maxPaddleAngleReflect = 0.75f;
     private float _xmod = 0f;
+    private System.Random _enemyReflect;
 
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _enemySprite;
@@ -20,6 +20,7 @@ public class PowerBallController : MonoBehaviour
     {
         _playerSprite = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         _enemySprite = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SpriteRenderer>();
+        _enemyReflect = new System.Random();
     }
 
     // Update is called once per frame
@@ -30,33 +31,23 @@ public class PowerBallController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = new Vector2(transform.position.x + (_xdirection * xspeed) * _xmod, transform.position.y + yspeed * _ydirection);
+        transform.position = new Vector2(transform.position.x + xspeed * _xmod, transform.position.y + yspeed * _ydirection);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Edge") _xdirection *= -1;
-        if (collision.collider.tag == "Player")
+        if (collision.collider.tag == "Edge") _xmod *= -1;
+        if (collision.collider.tag == "Goal") Destroy(gameObject);
+        if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
         {
             _ydirection *= -1;
 
-            var gap = _playerSprite.size.x / 6;
-            if (transform.position.x < collision.collider.transform.position.x - gap || transform.position.x > collision.collider.transform.position.x + gap)
-            {
-                _xmod += 0.25f;
-            }
-            _xmod += 0.75f * Math.Abs(Input.GetAxis("Horizontal"));
-        }
+            var collisionPosition = transform.position.x - collision.collider.transform.position.x;
+            var angle = (_maxPaddleAngleReflect * collisionPosition) / (_playerSprite.size.x / 2);
 
-        if (collision.collider.tag == "Enemy")
-        {
-            _ydirection *= -1;
+            var paddleSpeedMod = (1 - _maxPaddleAngleReflect) * (collision.collider.tag == "Player" ? Input.GetAxis("Horizontal") : _enemyReflect.Next(0, 100) / 100);
 
-            var gap = _enemySprite.size.x / 6;
-            if (transform.position.x < collision.collider.transform.position.x - gap || transform.position.x > collision.collider.transform.position.x + gap)
-            {
-                _xmod += 0.5f;
-            }
+            _xmod = angle + paddleSpeedMod;
         }
     }
 }
