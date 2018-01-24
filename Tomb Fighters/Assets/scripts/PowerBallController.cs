@@ -14,6 +14,7 @@ public class PowerBallController : MonoBehaviour
 
     private SpriteRenderer _playerSprite;
     private SpriteRenderer _enemySprite;
+    private AudioSource _sound;
 
     // Use this for initialization
     void Start()
@@ -21,6 +22,8 @@ public class PowerBallController : MonoBehaviour
         _playerSprite = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
         _enemySprite = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SpriteRenderer>();
         _enemyReflect = new System.Random();
+
+        _sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,6 +39,8 @@ public class PowerBallController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        _sound.Play();
+
         if (collision.collider.tag == "Edge") _xmod *= -1;
         if (collision.collider.tag == "Goal") Destroy(gameObject);
         if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
