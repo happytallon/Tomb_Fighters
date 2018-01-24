@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4441465407470406}
   - component: {fileID: 212225149804744754}
-  - component: {fileID: 114199822762332054}
   - component: {fileID: 61896230011921870}
   - component: {fileID: 50838477966692548}
+  - component: {fileID: 114199822762332054}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  lifes: 5
 --- !u!212 &212225149804744754
 SpriteRenderer:
   m_ObjectHideFlags: 1

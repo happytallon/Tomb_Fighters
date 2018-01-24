@@ -12,15 +12,26 @@ public class PowerBallController : MonoBehaviour
     private float _xmod = 0f;
     private System.Random _enemyReflect;
 
+    private GameObject _player;
     private SpriteRenderer _playerSprite;
+    private PlayerController _playerController;
+
+    private GameObject _enemy;
     private SpriteRenderer _enemySprite;
+    private EnemyController _enemyController;
+
     private AudioSource _sound;
 
     // Use this for initialization
     void Start()
     {
-        _playerSprite = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
+        _player = GameObject.FindGameObjectWithTag("Player");
+        _playerSprite = _player.GetComponent<SpriteRenderer>();
+        _playerController = _player.GetComponent<PlayerController>();
+
+        _enemy = GameObject.FindGameObjectWithTag("Enemy");
         _enemySprite = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SpriteRenderer>();
+        _enemyController = _enemy.GetComponent<EnemyController>();
         _enemyReflect = new System.Random();
 
         _sound = GetComponent<AudioSource>();
@@ -41,8 +52,16 @@ public class PowerBallController : MonoBehaviour
     {
         _sound.Play();
 
-        if (collision.collider.tag == "Edge") _xmod *= -1;
-        if (collision.collider.tag == "Goal") Destroy(gameObject);
+        if (collision.collider.tag == "Edge") { _xmod *= -1; return; }
+        if (collision.collider.tag == "Goal")
+        {
+            if (collision.collider.name == "up")
+                _enemyController.lifes -= 1;
+            if (collision.collider.name == "down")
+                _playerController.lifes -= 1;
+            Destroy(gameObject);
+            return;
+        }
         if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
         {
             _ydirection *= -1;

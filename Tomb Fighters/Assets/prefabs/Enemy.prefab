@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4318776277104142}
   - component: {fileID: 212235418854567414}
-  - component: {fileID: 50536766905796100}
   - component: {fileID: 61326435519870858}
+  - component: {fileID: 50536766905796100}
   - component: {fileID: 114140708199133136}
   m_Layer: 0
   m_Name: Enemy
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  lifes: 5
   ball: {fileID: 0}
 --- !u!212 &212235418854567414
 SpriteRenderer:
