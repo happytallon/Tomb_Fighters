@@ -312,12 +312,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
-      propertyPath: Ball
-      value: 
-      objectReference: {fileID: 4804868944047334, guid: ab53219026c9faa4595e52b97c1e9896,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1468513312}
@@ -331,20 +325,6 @@ Prefab:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1946362479}
-    - target: {fileID: 82539882382315324, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1897219655607916, guid: d5a2c06fd115446499e1859291e3b4eb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82539882382315324, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5a2c06fd115446499e1859291e3b4eb, type: 2}
   m_IsPrefabParent: 0

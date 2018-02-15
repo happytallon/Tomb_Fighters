@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : PaddleBaseController
 {
+    public float Delay = 0.05f;
+
     private Transform _ball;
 
     void Update()
@@ -22,7 +24,7 @@ public class EnemyController : PaddleBaseController
             return;
         }
 
-        var velocity = _ball.position.x > transform.position.x ? 1 : -1;
-        MoveRacket(velocity);
+        var newPosition = new Vector2(_ball.position.x, transform.position.y);
+        MoveRacketByPosition(newPosition, Delay);
     }
 }

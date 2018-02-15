@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialLifes: 5
   Speed: 5
+  Delay: 0.5
 --- !u!212 &212235418854567414
 SpriteRenderer:
   m_ObjectHideFlags: 1

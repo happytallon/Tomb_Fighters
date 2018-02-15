@@ -132,4 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c034921fb657a646ba4555ac0c64566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 1683050712999078, guid: ab53219026c9faa4595e52b97c1e9896, type: 2}
+  Ball: {fileID: 4804868944047334, guid: ab53219026c9faa4595e52b97c1e9896, type: 2}
+  Player: {fileID: 0}
+  Enemy: {fileID: 0}
+  Canvas: {fileID: 0}
