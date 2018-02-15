@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : PaddleBaseController
 {
+    private string _axis = "Horizontal";
     void FixedUpdate()
-    {        
-        transform.position = new Vector2(transform.position.x + Input.GetAxis("Horizontal") * speed, transform.position.y);
-    }    
+    {
+        var x = Input.GetAxis(_axis);
+        MoveRacket(x);
+    }
 }

@@ -29,14 +29,16 @@ public class GameController : MonoBehaviour
         _enemyUI = GameObject.Find("EnemyUI");
         _enemyLifes = _enemyUI.transform.Find("lifes").GetComponent<Text>();
 
-        _playerLifes.text = _playerController.lifes.ToString();
-        _enemyLifes.text = _enemyController.lifes.ToString();
+        //_playerLifes.text = _playerController.lifes.ToString();
+        //_enemyLifes.text = _enemyController.lifes.ToString();
+
+        _delayBallSpammer = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("PowerBall") == null && GameObject.Find("PowerBall(Clone)") == null)
+        if (GameObject.Find("PowerBall(Clone)") == null)
         {
             _delayBallSpammer += Time.deltaTime;
 

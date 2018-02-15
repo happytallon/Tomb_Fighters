@@ -2,6 +2,58 @@
 
 public class PowerBallController : MonoBehaviour
 {
+    public float speed = 1;
+
+    private PlayerController _playerController;
+    private EnemyController _enemyController;
+
+    private AudioSource _sound;
+
+    void Awake()
+    {
+        _sound = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {        
+        GetComponent<Rigidbody2D>().velocity = Vector2.up * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        _sound.Play();
+
+        if (col.collider.tag == "Edge") return;
+
+        if (col.collider.tag == "Goal")
+        {
+            GoalCollision(col);
+            return;
+        }
+
+        if (col.collider.tag == "Player" || col.collider.tag == "Enemy")
+        {
+            RacketCollision(col);
+        }
+    }
+    private void GoalCollision(Collision2D col)
+    {
+        if (col.collider.name == "up")
+            _enemyController.Die();
+        if (col.collider.name == "down")
+            _playerController.Die();
+        Destroy(gameObject);        
+    }
+    private void RacketCollision(Collision2D col)
+    {
+        var racketFactor = col.collider.tag == "Player" ? 1 : -1;
+        var hitFactor = (transform.position.x - col.transform.position.x) / col.collider.bounds.size.x;
+
+        var direction = new Vector2(hitFactor, racketFactor).normalized;
+
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
+    }
+    /*
     public float xspeed = 2f;
     public float yspeed = 2f;
 
@@ -14,13 +66,13 @@ public class PowerBallController : MonoBehaviour
 
     private GameObject _player;
     private SpriteRenderer _playerSprite;
-    private PlayerController _playerController;
+    
 
     private GameObject _enemy;
     private SpriteRenderer _enemySprite;
-    private EnemyController _enemyController;
+    
 
-    private AudioSource _sound;
+    
 
     // Use this for initialization
     void Start()
@@ -34,7 +86,7 @@ public class PowerBallController : MonoBehaviour
         _enemyController = _enemy.GetComponent<EnemyController>();
         _enemyReflect = new System.Random();
 
-        _sound = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -48,30 +100,6 @@ public class PowerBallController : MonoBehaviour
         transform.position = new Vector2(transform.position.x + xspeed * _xmod, transform.position.y + yspeed * _ydirection);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _sound.Play();
-
-        if (collision.collider.tag == "Edge") { _xmod *= -1; return; }
-        if (collision.collider.tag == "Goal")
-        {
-            if (collision.collider.name == "up")
-                _enemyController.lifes -= 1;
-            if (collision.collider.name == "down")
-                _playerController.lifes -= 1;
-            Destroy(gameObject);
-            return;
-        }
-        if (collision.collider.tag == "Player" || collision.collider.tag == "Enemy")
-        {
-            _ydirection *= -1;
-
-            var collisionPosition = transform.position.x - collision.collider.transform.position.x;
-            var angle = (_maxPaddleAngleReflect * collisionPosition) / (_playerSprite.size.x / 2);
-
-            var paddleSpeedMod = (1 - _maxPaddleAngleReflect) * (collision.collider.tag == "Player" ? Input.GetAxis("Horizontal") : _enemyReflect.Next(0, 100) / 100);
-
-            _xmod = angle + paddleSpeedMod;
-        }
-    }
+    
+    */
 }

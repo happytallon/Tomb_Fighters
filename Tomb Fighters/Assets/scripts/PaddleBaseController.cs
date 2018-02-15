@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PaddleBaseController : MonoBehaviour
 {
-    public float speed;
-    public float lifes;
+    public int InitialLifes = 5;
+    public float Speed;
 
-    // Use this for initialization
-    void Start()
+    protected int _lifes;
+
+    void Awake()
     {
-
+        _lifes = InitialLifes;
     }
-
-    // Update is called once per frame
-    void Update()
+    protected void MoveRacket(float _velocity)
     {
-
+        GetComponent<Rigidbody2D>().velocity = new Vector2(_velocity, 0) * Speed;
+    }
+    public void Die()
+    {
+        _lifes -= 1;
     }
 }

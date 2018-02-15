@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4441465407470406}
-  - component: {fileID: 212225149804744754}
-  - component: {fileID: 61896230011921870}
-  - component: {fileID: 50838477966692548}
-  - component: {fileID: 114199822762332054}
+  - component: {fileID: 212564398815208650}
+  - component: {fileID: 61053891179055416}
+  - component: {fileID: 50273726030640206}
+  - component: {fileID: 114313437080185122}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50838477966692548
+--- !u!50 &50273726030640206
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
@@ -59,11 +59,11 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &61896230011921870
+--- !u!61 &61053891179055416
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &114199822762332054
+--- !u!114 &114313437080185122
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b898cf1786a0b3944a74641474af89e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
-  lifes: 5
---- !u!212 &212225149804744754
+  InitialLifes: 5
+  Speed: 5
+--- !u!212 &212564398815208650
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
