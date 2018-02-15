@@ -12,6 +12,9 @@ public class PowerBallController : MonoBehaviour
     void Awake()
     {
         _sound = GetComponent<AudioSource>();
+
+        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _enemyController = GameObject.Find("Enemy").GetComponent<EnemyController>();
     }
 
     void Start()
@@ -79,7 +82,7 @@ public class PowerBallController : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerSprite = _player.GetComponent<SpriteRenderer>();
-        _playerController = _player.GetComponent<PlayerController>();
+        
 
         _enemy = GameObject.FindGameObjectWithTag("Enemy");
         _enemySprite = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SpriteRenderer>();

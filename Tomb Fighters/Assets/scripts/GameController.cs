@@ -5,34 +5,43 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject ball;
+    //Elements
+    public Transform Ball;
+    public Transform Player;
+    public Transform Enemy;
+    public Canvas Canvas;
 
+    //Ball
     private float _delayBallSpammer;
+
+    //Controllers
     private PlayerController _playerController;
     private EnemyController _enemyController;
 
-    private GameObject _playerUI;
+    //Canvas
+    private Transform _playerUI;
+    private Transform _enemyUI;
     private Text _playerLifes;
-
-    private GameObject _enemyUI;
     private Text _enemyLifes;
-
-
+    
     // Use this for initialization
     void Start()
     {
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        _playerUI = GameObject.Find("PlayerUI");
-        _playerLifes = _playerUI.transform.Find("lifes").GetComponent<Text>();
+        //ball
+        _delayBallSpammer = 3;
 
-        _enemyController = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyController>();
-        _enemyUI = GameObject.Find("EnemyUI");
+        //controllers
+        _playerController = Player.GetComponent<PlayerController>();
+        _enemyController = Enemy.GetComponent<EnemyController>();
+
+        //canvas
+        _playerUI = Canvas.transform.Find("PlayerUI");
+        _enemyUI = Canvas.transform.Find("EnemyUI");
+
+        _playerLifes = _playerUI.transform.Find("lifes").GetComponent<Text>();
         _enemyLifes = _enemyUI.transform.Find("lifes").GetComponent<Text>();
 
-        //_playerLifes.text = _playerController.lifes.ToString();
-        //_enemyLifes.text = _enemyController.lifes.ToString();
-
-        _delayBallSpammer = 3;
+        UpdateCanvas();
     }
 
     // Update is called once per frame
@@ -45,8 +54,15 @@ public class GameController : MonoBehaviour
             if (_delayBallSpammer > 3)
             {
                 _delayBallSpammer = 0;
-                Instantiate(ball);
+                Instantiate(Ball);
             }
+
+            UpdateCanvas();
         }
+    }
+    private void UpdateCanvas()
+    {
+        _playerLifes.text = _playerController.Lifes().ToString();
+        _enemyLifes.text = _enemyController.Lifes().ToString();
     }
 }

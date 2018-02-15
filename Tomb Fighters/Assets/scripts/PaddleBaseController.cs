@@ -8,6 +8,7 @@ public class PaddleBaseController : MonoBehaviour
     public float Speed;
 
     protected int _lifes;
+    public int Lifes() { return _lifes; }
 
     void Awake()
     {
@@ -21,4 +22,5 @@ public class PaddleBaseController : MonoBehaviour
     {
         _lifes -= 1;
     }
+    
 }

@@ -16,7 +16,11 @@ public class EnemyController : PaddleBaseController
     }
     void FixedUpdate()
     {
-        if (_ball == null) return;
+        if (_ball == null)
+        {
+            MoveRacket(0);
+            return;
+        }
 
         var velocity = _ball.position.x > transform.position.x ? 1 : -1;
         MoveRacket(velocity);
