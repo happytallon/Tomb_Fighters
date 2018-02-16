@@ -54,11 +54,16 @@ public class GameController : MonoBehaviour
             if (_delayBallSpammer > 3)
             {
                 _delayBallSpammer = 0;
-                Instantiate(Ball);
+                CreateBall(Vector3.zero);
             }
 
             UpdateCanvas();
         }
+    }
+    public GameObject CreateBall(Vector3 location)
+    {
+        var newBall = Instantiate(Ball, location, Quaternion.identity); ;
+        return newBall.gameObject;
     }
     private void UpdateCanvas()
     {

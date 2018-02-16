@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+[Serializable]
 public class PowerBallController : MonoBehaviour
 {
     public float InitialSpeed;
@@ -15,6 +17,17 @@ public class PowerBallController : MonoBehaviour
     private AudioSource _sound;
 
     //power up's
+    private int _damageboost = 0;
+    private bool _doppelganger { get { return _doppelgangerInitialSpeed != Vector2.zero; } }
+    private Vector2 _doppelgangerInitialSpeed;
+    private bool _barrier;
+
+    public float pu_DamageExpiration;
+    public float pu_SpeedBoostExpiration;
+    public float pu_SpeedCurtailExpiration;
+
+    private List<PowerUp> _currentPowerUps = new List<PowerUp>();
+    [Serializable]
     private class PowerUp
     {
         public float CurrentTime { get; set; }
@@ -27,18 +40,10 @@ public class PowerBallController : MonoBehaviour
             NormalizeMethod = normalizedMethod;
         }
     }
-    private int _damageboost = 0;
-    private bool _doppelganger;
-    private bool _barrier;
-
-    public float pu_DamageExpiration;
-    public float pu_SpeedBoostExpiration;
-    public float pu_SpeedCurtailExpiration;
-
-    private IEnumerable<PowerUp> _currentPowerUps;
 
     void Awake()
     {
+        SpeedNormalize();
         _sound = GetComponent<AudioSource>();
 
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -47,7 +52,7 @@ public class PowerBallController : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = Vector2.up * InitialSpeed;
+        ChangeSpeed(!_doppelganger ? Vector2.up : _doppelgangerInitialSpeed);
     }
 
     void FixedUpdate()
@@ -56,7 +61,7 @@ public class PowerBallController : MonoBehaviour
         foreach (var powerup in _currentPowerUps.Where(_ => _.Expired))
             powerup.NormalizeMethod();
 
-        _currentPowerUps.ToList().RemoveAll(_ => _.Expired);
+        _currentPowerUps = _currentPowerUps.Where(_ => !_.Expired).ToList();
 
         foreach (var powerup in _currentPowerUps)
             powerup.CurrentTime += Time.deltaTime;
@@ -65,6 +70,8 @@ public class PowerBallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         _sound.Play();
+
+        if (col.collider.tag == "Ball") { Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>()); return; }
 
         if (col.collider.tag == "Edge") return;
 
@@ -95,16 +102,21 @@ public class PowerBallController : MonoBehaviour
 
         var direction = new Vector2(hitFactor, racketFactor).normalized;
 
-        GetComponent<Rigidbody2D>().velocity = direction * _speed;
+        ChangeSpeed(direction);
     }
-
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "PowerUp")
-        {
-            SetPowerUp(col.gameObject);
-        }
+        if (col.tag == "PowerUp") SetPowerUp(col.gameObject);
+    }
+
+    private void ChangeSpeed()
+    {
+        ChangeSpeed(GetComponent<Rigidbody2D>().velocity.normalized);
+    }
+    private void ChangeSpeed(Vector2 direction)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction * _speed;
     }
 
     #region Power Up's
@@ -117,91 +129,56 @@ public class PowerBallController : MonoBehaviour
         if (powerup.name == "PowerUp_Barrier") { SetBarrier(); return; }
     }
 
-    //DAMAGE
+    #region DAMAGE
     private void SetDamageBoost()
     {
         _damageboost = 1;
-        _currentPowerUps.Concat(new[] { new PowerUp(pu_DamageExpiration, DamageNormalize) });
+        _currentPowerUps.Add(new PowerUp(pu_DamageExpiration, DamageNormalize));
     }
     private void DamageNormalize()
     {
         _damageboost = 0;
     }
-    //SPEED
+    #endregion    
+    #region SPEED
     private void SetSpeedBoost()
     {
-        _speed *= 2;
-        _currentPowerUps.Concat(new[] { new PowerUp(pu_SpeedBoostExpiration, SpeedNormalize) });
+        _speed *= 1.5f;
+        _currentPowerUps.Add(new PowerUp(pu_SpeedBoostExpiration, SpeedNormalize));
+
+        ChangeSpeed();
     }
     private void SetSpeedCurtail()
     {
-        _speed /= 2;
-        _currentPowerUps.Concat(new[] { new PowerUp(pu_SpeedCurtailExpiration, SpeedNormalize) });
+        _speed /= 1.5f;
+        _currentPowerUps.Add(new PowerUp(pu_SpeedCurtailExpiration, SpeedNormalize));
+
+        ChangeSpeed();
     }
     private void SpeedNormalize()
     {
         _speed = InitialSpeed;
-    }
 
+        ChangeSpeed();
+    }
+    #endregion
+    #region Doppelganger and Barrier
     private void SetDoppelganger()
     {
-        var newBall = Instantiate(gameObject);
-        var currentVelocity = GetComponent<Rigidbody2D>().velocity;
-        newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(currentVelocity.x * -1, currentVelocity.y * -1);
+        var newBall = GameObject.Find("GameController").GetComponent<GameController>().CreateBall(transform.position);
+        var currentVelocity = GetComponent<Rigidbody2D>().velocity.normalized;
+        currentVelocity.y *= -1;
+        newBall.GetComponent<PowerBallController>()._doppelgangerInitialSpeed = currentVelocity;
+
+
+        //var direction = GetComponent<Rigidbody2D>().velocity.normalized;
+        //direction.y *= -1;
+        //newBall.GetComponent<Rigidbody2D>().velocity = direction;
     }
     private void SetBarrier()
     {
     }
     #endregion
 
-
-    /*
-    public float xspeed = 2f;
-    public float yspeed = 2f;
-
-    private float _ydirection = 1f;
-    private float _xdirection = 1f;
-
-    private float _maxPaddleAngleReflect = 0.75f;
-    private float _xmod = 0f;
-    private System.Random _enemyReflect;
-
-    private GameObject _player;
-    private SpriteRenderer _playerSprite;
-
-
-    private GameObject _enemy;
-    private SpriteRenderer _enemySprite;
-
-
-
-
-    // Use this for initialization
-    void Start()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _playerSprite = _player.GetComponent<SpriteRenderer>();
-
-
-        _enemy = GameObject.FindGameObjectWithTag("Enemy");
-        _enemySprite = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SpriteRenderer>();
-        _enemyController = _enemy.GetComponent<EnemyController>();
-        _enemyReflect = new System.Random();
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void FixedUpdate()
-    {
-        transform.position = new Vector2(transform.position.x + xspeed * _xmod, transform.position.y + yspeed * _ydirection);
-    }
-
-
-    */
+    #endregion
 }

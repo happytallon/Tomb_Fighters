@@ -12,8 +12,16 @@ public class EnemyController : PaddleBaseController
     {
         if (_ball == null)
         {
-            var temp = GameObject.FindGameObjectWithTag("Ball");
-            _ball = temp == null ? null : temp.GetComponent<Transform>();
+            var balls = GameObject.FindGameObjectsWithTag("Ball");
+            foreach (var ball in balls)
+            {
+                var direction = ball.GetComponent<Rigidbody2D>().velocity.normalized;
+                if (direction.y > 0)
+                {
+                    _ball = ball.GetComponent<Transform>();
+                    break;
+                }
+            }            
         }
     }
     void FixedUpdate()
@@ -26,5 +34,10 @@ public class EnemyController : PaddleBaseController
 
         var newPosition = new Vector2(_ball.position.x, transform.position.y);
         MoveRacketByPosition(newPosition, Delay);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject == _ball.gameObject)
+            _ball = null;
     }
 }
