@@ -170,7 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767e691ec71aea343baee32136204532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSpeed: 10
+  InitialSpeed: 5
+  _barrier: {fileID: 1636998936606944, guid: bb837e81c0557e7449d073764c6e395b, type: 2}
+  _barrier_enemy: {fileID: 1304941456810224, guid: 02da159671ec28345a55e50fb742bc39,
+    type: 2}
   pu_DamageExpiration: 1
   pu_SpeedBoostExpiration: 1
   pu_SpeedCurtailExpiration: 1

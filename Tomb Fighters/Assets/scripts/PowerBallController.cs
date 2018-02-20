@@ -13,6 +13,7 @@ public class PowerBallController : MonoBehaviour
 
     private PlayerController _playerController;
     private EnemyController _enemyController;
+    private GameController _gameController;
 
     private AudioSource _sound;
 
@@ -20,7 +21,8 @@ public class PowerBallController : MonoBehaviour
     private int _damageboost = 0;
     private bool _doppelganger { get { return _doppelgangerInitialSpeed != Vector2.zero; } }
     private Vector2 _doppelgangerInitialSpeed;
-    private bool _barrier;
+    public GameObject _barrier;
+    public GameObject _barrier_enemy;
 
     public float pu_DamageExpiration;
     public float pu_SpeedBoostExpiration;
@@ -48,6 +50,7 @@ public class PowerBallController : MonoBehaviour
 
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _enemyController = GameObject.Find("Enemy").GetComponent<EnemyController>();
+        _gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     void Start()
@@ -72,7 +75,7 @@ public class PowerBallController : MonoBehaviour
         _sound.Play();
 
         if (col.collider.tag == "Ball") { Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>()); return; }
-
+        
         if (col.collider.tag == "Edge") return;
 
         if (col.collider.tag == "Goal")
@@ -84,6 +87,8 @@ public class PowerBallController : MonoBehaviour
         if (col.collider.tag == "Player" || col.collider.tag == "Enemy")
         {
             RacketCollision(col);
+            _gameController.IsPlayerTurn = col.collider.tag == "Player";
+            _gameController.UpdateBarrier = true;
             return;
         }
     }
@@ -122,11 +127,11 @@ public class PowerBallController : MonoBehaviour
     #region Power Up's
     private void SetPowerUp(GameObject powerup)
     {
-        if (powerup.name == "PowerUp_Dmg+") { SetDamageBoost(); return; }
-        if (powerup.name == "PowerUp_Speed+") { SetSpeedBoost(); return; }
-        if (powerup.name == "PowerUp_Speed-") { SetSpeedCurtail(); return; }
-        if (powerup.name == "PowerUp_Doppelganger") { SetDoppelganger(); return; }
-        if (powerup.name == "PowerUp_Barrier") { SetBarrier(); return; }
+        if (powerup.name == "PowerUp_Dmg+(Clone)") { SetDamageBoost(); return; }
+        if (powerup.name == "PowerUp_Speed+(Clone)") { SetSpeedBoost(); return; }
+        if (powerup.name == "PowerUp_Speed-(Clone)") { SetSpeedCurtail(); return; }
+        if (powerup.name == "PowerUp_Doppelganger(Clone)") { SetDoppelganger(); return; }
+        if (powerup.name == "PowerUp_Barrier(Clone)") { SetBarrier(); return; }
     }
 
     #region DAMAGE
@@ -177,8 +182,49 @@ public class PowerBallController : MonoBehaviour
     }
     private void SetBarrier()
     {
+        var direction = GetComponent<Rigidbody2D>().velocity.normalized;
+
+        CreateBarrier(direction.y > 0 ? 0 : 1);
+    }
+    private void CreateBarrier(int player)
+    {
+        //setup
+        var barrierPositionsSetup = player == 0 ?
+            new List<BarrierPosition>() {
+                new BarrierPosition(-2.25f,-2.75f,-1.25f,-1.75f),
+                new BarrierPosition(-0.25f,-2.5f,0.25f,-1.5f),
+                new BarrierPosition(1.25f,-2.75f,2.25f,-1.75f),
+            } :
+            new List<BarrierPosition>() {
+                new BarrierPosition(-2.25f,2.75f,-1.25f,1.75f),
+                new BarrierPosition(-0.25f,2.5f,0.25f,1.5f),
+                new BarrierPosition(1.25f,2.75f,2.25f,1.75f),
+            };
+
+        var barrierPositions = new List<Vector2>();
+
+        barrierPositionsSetup.ForEach(_ =>
+        {
+            var position_x = UnityEngine.Random.Range(_.MinPosition.x, _.MaxPosition.x);
+            var position_y = UnityEngine.Random.Range(_.MinPosition.y, _.MaxPosition.y);
+            barrierPositions.Add(new Vector2(position_x, position_y));
+        });
+
+        barrierPositions.ForEach(_ => { Instantiate(player == 0 ? _barrier : _barrier_enemy, _, Quaternion.identity); });
+    }
+    private class BarrierPosition
+    {
+        public Vector2 MinPosition { get; set; }
+        public Vector2 MaxPosition { get; set; }
+        public BarrierPosition(float min_x, float min_y, float max_x, float max_y)
+        {
+            MinPosition = new Vector2(min_x, min_y);
+            MaxPosition = new Vector2(max_x, max_y);
+        }
     }
     #endregion
+
+
 
     #endregion
 }
