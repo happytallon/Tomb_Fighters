@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1683050712999078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,9 +76,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.009579062, y: 0}
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 1.80157
 --- !u!82 &82365321453417046
 AudioSource:
   m_ObjectHideFlags: 1
@@ -174,9 +174,9 @@ MonoBehaviour:
   _barrier: {fileID: 1636998936606944, guid: bb837e81c0557e7449d073764c6e395b, type: 2}
   _barrier_enemy: {fileID: 1304941456810224, guid: 02da159671ec28345a55e50fb742bc39,
     type: 2}
-  pu_DamageExpiration: 1
-  pu_SpeedBoostExpiration: 1
-  pu_SpeedCurtailExpiration: 1
+  pu_DamageExpiration: 5
+  pu_SpeedBoostExpiration: 5
+  pu_SpeedCurtailExpiration: 5
 --- !u!212 &212602262802645230
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -211,12 +211,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 724c9ec7b6a283c48bbd0fe85fc7a777, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1fef9d745b142124e9c617ed02daec1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4, y: 1.4}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
