@@ -10,6 +10,8 @@ public class PaddleBaseController : MonoBehaviour
     protected int _lifes;
     public int Lifes() { return _lifes; }
 
+    public bool BarrierActive;
+
     void Awake()
     {
         _lifes = InitialLifes;

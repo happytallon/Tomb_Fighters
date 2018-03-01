@@ -188,6 +188,8 @@ public class PowerBallController : MonoBehaviour
     }
     private void CreateBarrier(int player)
     {
+        if (player == 0 && _playerController.BarrierActive || player == 1 && _enemyController.BarrierActive) return;
+
         //setup
         var barrierPositionsSetup = player == 0 ?
             new List<BarrierPosition>() {
@@ -211,6 +213,11 @@ public class PowerBallController : MonoBehaviour
         });
 
         barrierPositions.ForEach(_ => { Instantiate(player == 0 ? _barrier : _barrier_enemy, _, Quaternion.identity); });
+
+        if (player == 0)
+            _playerController.BarrierActive = true;
+        else
+            _enemyController.BarrierActive = true;
     }
     private class BarrierPosition
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BarrierController : MonoBehaviour
 {
     public bool IsPlayerBarrier;
+    private byte _barrierDelay;
 
     private Rigidbody2D _ballRigidBody;
     public bool activated { get { return _gameController.IsPlayerTurn && !IsPlayerBarrier || !_gameController.IsPlayerTurn && IsPlayerBarrier; } }
@@ -37,7 +38,13 @@ public class BarrierController : MonoBehaviour
             var ballCollider = _ballRigidBody.gameObject.GetComponent<Collider2D>();
             Physics2D.IgnoreCollision(ballCollider, GetComponent<Collider2D>(), !activated);
 
-            _gameController.UpdateBarrier = false;
+            _barrierDelay++;
+
+            if (_barrierDelay == 3)
+            {
+                _gameController.UpdateBarrier = false;
+                _barrierDelay = 0;
+            }
         }
     }
 

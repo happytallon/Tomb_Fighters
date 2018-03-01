@@ -423,27 +423,27 @@ Prefab:
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[0]
-      value: 27.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[4]
-      value: 10
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[3]
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[2]
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[1]
-      value: 27.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
