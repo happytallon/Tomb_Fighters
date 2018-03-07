@@ -43,6 +43,8 @@ public class PowerBallController : MonoBehaviour
         }
     }
 
+    public bool rotate;
+
     void Awake()
     {
         SpeedNormalize();
@@ -55,7 +57,7 @@ public class PowerBallController : MonoBehaviour
 
     void Start()
     {
-        ChangeSpeed(!_doppelganger ? Vector2.up : _doppelgangerInitialSpeed);
+        ChangeSpeed(Vector2.up);
     }
 
     void FixedUpdate()
@@ -68,6 +70,11 @@ public class PowerBallController : MonoBehaviour
 
         foreach (var powerup in _currentPowerUps)
             powerup.CurrentTime += Time.deltaTime;
+
+        if (rotate)
+        {
+            transform.Rotate(0f,0f,10);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
