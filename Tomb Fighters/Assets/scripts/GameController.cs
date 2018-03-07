@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     public List<float> PowerUps_Probability;
     private Dictionary<GameObject, float> _powerUps = new Dictionary<GameObject, float>();
     public bool PowerUpActive;
+    public List<GameObject> PlayerBarriers = new List<GameObject>();
+    public List<GameObject> EnemyBarriers = new List<GameObject>();
 
 
     //Controllers
@@ -110,13 +112,32 @@ public class GameController : MonoBehaviour
                 _currentPowerUpDelay += Time.deltaTime;
             }
         }
+
+        if (UpdateBarrier)
+        {
+            if (IsPlayerTurn)
+            {
+                foreach (var barrier in PlayerBarriers)
+                    barrier.GetComponent<BarrierController>().ActivateDeactivateBarrier(false);
+                foreach (var barrier in EnemyBarriers)
+                    barrier.GetComponent<BarrierController>().ActivateDeactivateBarrier(true);
+            }
+            if (!IsPlayerTurn)
+            {
+                foreach (var barrier in PlayerBarriers)
+                    barrier.GetComponent<BarrierController>().ActivateDeactivateBarrier(true);
+                foreach (var barrier in EnemyBarriers)
+                    barrier.GetComponent<BarrierController>().ActivateDeactivateBarrier(false);
+            }
+            UpdateBarrier = false;
+        }
     }
     public GameObject CreateBall(Vector3 location)
     {
         var newBall = Instantiate(Ball, location, Quaternion.identity); ;
         return newBall.gameObject;
     }
-    private void UpdateCanvas()
+    public void UpdateCanvas()
     {
         _playerLifes.text = _playerController.Lifes().ToString();
         _enemyLifes.text = _enemyController.Lifes().ToString();

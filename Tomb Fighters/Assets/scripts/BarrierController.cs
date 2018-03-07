@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class BarrierController : MonoBehaviour
 {
-    public bool IsPlayerBarrier;
-    private byte _barrierDelay;
-
     private Rigidbody2D _ballRigidBody;
-    public bool activated { get { return _gameController.IsPlayerTurn && !IsPlayerBarrier || !_gameController.IsPlayerTurn && IsPlayerBarrier; } }
     private GameController _gameController;
 
     private SpriteRenderer _spriteRenderer;
@@ -31,21 +27,18 @@ public class BarrierController : MonoBehaviour
 
         if (_gameController.UpdateBarrier)
         {
-            var color = _spriteRenderer.color;
-            color.a = activated ? 1f : 0.5f;
-            _spriteRenderer.color = color;
-
-            var ballCollider = _ballRigidBody.gameObject.GetComponent<Collider2D>();
-            Physics2D.IgnoreCollision(ballCollider, GetComponent<Collider2D>(), !activated);
-
-            _barrierDelay++;
-
-            if (_barrierDelay == 3)
-            {
-                _gameController.UpdateBarrier = false;
-                _barrierDelay = 0;
-            }
+            
         }
+    }
+
+    public void ActivateDeactivateBarrier(bool activated)
+    {
+        var color = _spriteRenderer.color;
+        color.a = activated ? 1f : 0.5f;
+        _spriteRenderer.color = color;
+
+        var ballCollider = _ballRigidBody.gameObject.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(ballCollider, GetComponent<Collider2D>(), !activated);
     }
 
     private Rigidbody2D GetBallRigidbody()

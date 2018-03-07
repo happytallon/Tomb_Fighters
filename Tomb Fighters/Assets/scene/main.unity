@@ -423,12 +423,12 @@ Prefab:
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[0]
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[4]
-      value: 80
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
@@ -438,16 +438,116 @@ Prefab:
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[2]
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUps_Probability.Array.data[1]
-      value: 5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
         type: 2}
       propertyPath: PowerUpDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[5]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[6]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[7]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[8]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[9]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[10]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[11]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[12]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[13]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[14]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[15]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[16]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[17]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[18]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[19]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[20]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[21]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[22]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[23]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
+        type: 2}
+      propertyPath: PowerUps_Probability.Array.data[24]
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

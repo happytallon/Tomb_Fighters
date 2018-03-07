@@ -24,6 +24,10 @@ public class PaddleBaseController : MonoBehaviour
     {
         transform.position = Vector2.Lerp(transform.position, pos, lerp);
     }
+    public void LifeUp(int lifes)
+    {
+        _lifes += lifes;
+    }
     public void Die(int lifes)
     {
         _lifes -= lifes;

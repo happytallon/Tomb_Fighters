@@ -73,9 +73,10 @@ public class PowerBallController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         _sound.Play();
+        _gameController.UpdateBarrier = true;
 
         if (col.collider.tag == "Ball") { Physics2D.IgnoreCollision(col.collider, GetComponent<Collider2D>()); return; }
-        
+
         if (col.collider.tag == "Edge") return;
 
         if (col.collider.tag == "Goal")
@@ -88,7 +89,6 @@ public class PowerBallController : MonoBehaviour
         {
             RacketCollision(col);
             _gameController.IsPlayerTurn = col.collider.tag == "Player";
-            _gameController.UpdateBarrier = true;
             return;
         }
     }
@@ -99,6 +99,7 @@ public class PowerBallController : MonoBehaviour
         if (col.collider.name == "down")
             _playerController.Die(1 + _damageboost);
         Destroy(gameObject);
+        _gameController.UpdateCanvas();
     }
     private void RacketCollision(Collision2D col)
     {
@@ -130,7 +131,7 @@ public class PowerBallController : MonoBehaviour
         if (powerup.name == "PowerUp_Dmg+(Clone)") { SetDamageBoost(); return; }
         if (powerup.name == "PowerUp_Speed+(Clone)") { SetSpeedBoost(); return; }
         if (powerup.name == "PowerUp_Speed-(Clone)") { SetSpeedCurtail(); return; }
-        if (powerup.name == "PowerUp_Doppelganger(Clone)") { SetDoppelganger(); return; }
+        if (powerup.name == "PowerUp_LifeUp(Clone)") { SetLifeUp(); return; }
         if (powerup.name == "PowerUp_Barrier(Clone)") { SetBarrier(); return; }
     }
 
@@ -168,17 +169,17 @@ public class PowerBallController : MonoBehaviour
     }
     #endregion
     #region Doppelganger and Barrier
-    private void SetDoppelganger()
+    private void SetLifeUp()
     {
-        var newBall = GameObject.Find("GameController").GetComponent<GameController>().CreateBall(transform.position);
-        var currentVelocity = GetComponent<Rigidbody2D>().velocity.normalized;
-        currentVelocity.y *= -1;
-        newBall.GetComponent<PowerBallController>()._doppelgangerInitialSpeed = currentVelocity;
-
-
-        //var direction = GetComponent<Rigidbody2D>().velocity.normalized;
-        //direction.y *= -1;
-        //newBall.GetComponent<Rigidbody2D>().velocity = direction;
+        if (_gameController.IsPlayerTurn)
+        {
+            if (_playerController.Lifes() < 5) _playerController.LifeUp(1);
+        }
+        else
+        {
+            if (_enemyController.Lifes() < 5) _enemyController.LifeUp(1);
+        }
+        _gameController.UpdateCanvas();
     }
     private void SetBarrier()
     {
@@ -212,7 +213,11 @@ public class PowerBallController : MonoBehaviour
             barrierPositions.Add(new Vector2(position_x, position_y));
         });
 
-        barrierPositions.ForEach(_ => { Instantiate(player == 0 ? _barrier : _barrier_enemy, _, Quaternion.identity); });
+        barrierPositions.ForEach(_ =>
+        {
+            var barrier = Instantiate(player == 0 ? _barrier : _barrier_enemy, _, Quaternion.identity);
+            if (player == 0) _gameController.PlayerBarriers.Add(barrier); else _gameController.EnemyBarriers.Add(barrier);
+        });
 
         if (player == 0)
             _playerController.BarrierActive = true;
