@@ -14,6 +14,7 @@ public class PowerBallController : MonoBehaviour
     private PlayerController _playerController;
     private EnemyController _enemyController;
     private GameController _gameController;
+    private PowerBallSpriteController _spriteController;
 
     private AudioSource _sound;
 
@@ -27,7 +28,7 @@ public class PowerBallController : MonoBehaviour
     public float pu_DamageExpiration;
     public float pu_SpeedBoostExpiration;
     public float pu_SpeedCurtailExpiration;
-
+       
     private List<PowerUp> _currentPowerUps = new List<PowerUp>();
     [Serializable]
     private class PowerUp
@@ -43,13 +44,12 @@ public class PowerBallController : MonoBehaviour
         }
     }
 
-    public bool rotate;
-
     void Awake()
     {
+        _spriteController = transform.Find("_sprite").GetComponent<PowerBallSpriteController>();
         SpeedNormalize();
         _sound = GetComponent<AudioSource>();
-
+        
         _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _enemyController = GameObject.Find("Enemy").GetComponent<EnemyController>();
         _gameController = GameObject.Find("GameController").GetComponent<GameController>();
@@ -59,7 +59,6 @@ public class PowerBallController : MonoBehaviour
     {
         ChangeSpeed(Vector2.up);
     }
-
     void FixedUpdate()
     {
         //normalize power up's
@@ -70,13 +69,8 @@ public class PowerBallController : MonoBehaviour
 
         foreach (var powerup in _currentPowerUps)
             powerup.CurrentTime += Time.deltaTime;
-
-        if (rotate)
-        {
-            transform.Rotate(0f,0f,10);
-        }
     }
-
+    
     void OnCollisionEnter2D(Collision2D col)
     {
         _sound.Play();
@@ -158,6 +152,7 @@ public class PowerBallController : MonoBehaviour
     {
         _speed *= 1.5f;
         _currentPowerUps.Add(new PowerUp(pu_SpeedBoostExpiration, SpeedNormalize));
+        _spriteController.rotationBoost = 2;
 
         ChangeSpeed();
     }
@@ -165,12 +160,14 @@ public class PowerBallController : MonoBehaviour
     {
         _speed /= 1.5f;
         _currentPowerUps.Add(new PowerUp(pu_SpeedCurtailExpiration, SpeedNormalize));
+        _spriteController.rotationBoost = 0.5f;
 
         ChangeSpeed();
     }
     private void SpeedNormalize()
     {
         _speed = InitialSpeed;
+        _spriteController.rotationBoost = 1f;
 
         ChangeSpeed();
     }
