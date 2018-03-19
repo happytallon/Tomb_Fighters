@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61053891179055416}
   - component: {fileID: 50273726030640206}
   - component: {fileID: 114313437080185122}
+  - component: {fileID: 82726674857886948}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -88,6 +89,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 0.2}
   m_EdgeRadius: 0
+--- !u!82 &82726674857886948
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719065069616984}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114313437080185122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +182,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialLifes: 5
   Speed: 5
+  BarrierActive: 0
+  Name: Kinha
+  BracketImages:
+  - {fileID: 21300000, guid: b06ca2db8cf626f4ca4f9c5bff7cbd51, type: 3}
+  - {fileID: 21300000, guid: 74b22dc161a92754ca23af8bc2dda828, type: 3}
+  - {fileID: 21300000, guid: 4b76ad1944383ec44a405c568b20b5d7, type: 3}
+  - {fileID: 21300000, guid: 09c64cf0c1577f4429d210eaf2c56b84, type: 3}
+  BracketSFX:
+  - {fileID: 8300000, guid: b908b5032e5e73f41bd73348086d3fba, type: 3}
+  - {fileID: 8300000, guid: c06a6f245e95c0647a6c416ff979387c, type: 3}
+  - {fileID: 8300000, guid: b908b5032e5e73f41bd73348086d3fba, type: 3}
+  - {fileID: 8300000, guid: c06a6f245e95c0647a6c416ff979387c, type: 3}
 --- !u!212 &212564398815208650
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -20,15 +20,17 @@ public class PowerBallController : MonoBehaviour
 
     //power up's
     private int _damageboost = 0;
-    private bool _doppelganger { get { return _doppelgangerInitialSpeed != Vector2.zero; } }
-    private Vector2 _doppelgangerInitialSpeed;
+    //private bool _doppelganger { get { return _doppelgangerInitialSpeed != Vector2.zero; } }
+    //private Vector2 _doppelgangerInitialSpeed;
     public GameObject _barrier;
     public GameObject _barrier_enemy;
 
     public float pu_DamageExpiration;
     public float pu_SpeedBoostExpiration;
     public float pu_SpeedCurtailExpiration;
-       
+
+    public PowerUpAudioController _powerUpAudioController;
+
     private List<PowerUp> _currentPowerUps = new List<PowerUp>();
     [Serializable]
     private class PowerUp
@@ -141,6 +143,7 @@ public class PowerBallController : MonoBehaviour
     {
         _damageboost = 1;
         _currentPowerUps.Add(new PowerUp(pu_DamageExpiration, DamageNormalize));
+        _gameController.PlayPowerUpSfx("damage+");
     }
     private void DamageNormalize()
     {
@@ -153,6 +156,7 @@ public class PowerBallController : MonoBehaviour
         _speed *= 1.5f;
         _currentPowerUps.Add(new PowerUp(pu_SpeedBoostExpiration, SpeedNormalize));
         _spriteController.rotationBoost = 2;
+        _gameController.PlayPowerUpSfx("speed+");
 
         ChangeSpeed();
     }
@@ -161,6 +165,7 @@ public class PowerBallController : MonoBehaviour
         _speed /= 1.5f;
         _currentPowerUps.Add(new PowerUp(pu_SpeedCurtailExpiration, SpeedNormalize));
         _spriteController.rotationBoost = 0.5f;
+        _gameController.PlayPowerUpSfx("speed-");
 
         ChangeSpeed();
     }
@@ -172,17 +177,16 @@ public class PowerBallController : MonoBehaviour
         ChangeSpeed();
     }
     #endregion
-    #region Doppelganger and Barrier
+    #region LifeUp and Barrier
     private void SetLifeUp()
     {
         if (_gameController.IsPlayerTurn)
-        {
             if (_playerController.Lifes() < 5) _playerController.LifeUp(1);
-        }
         else
-        {
             if (_enemyController.Lifes() < 5) _enemyController.LifeUp(1);
-        }
+
+        _gameController.PlayPowerUpSfx("lifeUp");
+
         _gameController.UpdateCanvas();
     }
     private void SetBarrier()
@@ -227,6 +231,8 @@ public class PowerBallController : MonoBehaviour
             _playerController.BarrierActive = true;
         else
             _enemyController.BarrierActive = true;
+
+        _gameController.PlayPowerUpSfx("barrier");
     }
     private class BarrierPosition
     {

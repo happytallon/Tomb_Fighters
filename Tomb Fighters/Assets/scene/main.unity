@@ -226,11 +226,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114313437080185122, guid: c4beb4dd21a408641b7a528986a79e1d,
-        type: 2}
-      propertyPath: Speed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c4beb4dd21a408641b7a528986a79e1d, type: 2}
   m_IsPrefabParent: 0
@@ -283,26 +278,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4719085598496414, guid: d5a2c06fd115446499e1859291e3b4eb, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -350,206 +325,6 @@ Prefab:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1946362479}
-    - target: {fileID: 82539882382315324, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: IsPlayerTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: UpdateBarrier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: _powerUps.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.data[0]
-      value: 
-      objectReference: {fileID: 1188915304987668, guid: 344979bcd07e7b947a29284c840f96a2,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1227583689154112, guid: a5eeb34cbca3be34b842ffa0fd084f64,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.data[2]
-      value: 
-      objectReference: {fileID: 1403772564480336, guid: 9898c74dd65bc31459516d311384d50e,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.data[3]
-      value: 
-      objectReference: {fileID: 1183515751704734, guid: c0f193ffb7acdf943a0becdb4b76d3d6,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Objects.Array.data[4]
-      value: 
-      objectReference: {fileID: 1507374636367664, guid: 10118bbacb5d3454497c48e60fed4f94,
-        type: 2}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[0]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[4]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[3]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[2]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[1]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUpDelay
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[5]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[6]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[7]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[8]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[9]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[10]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[11]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[12]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[13]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[14]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[15]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[16]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[17]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[18]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[19]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[20]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[21]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[22]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[23]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334040392372602, guid: d5a2c06fd115446499e1859291e3b4eb,
-        type: 2}
-      propertyPath: PowerUps_Probability.Array.data[24]
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5a2c06fd115446499e1859291e3b4eb, type: 2}
   m_IsPrefabParent: 0
@@ -962,11 +737,6 @@ Prefab:
     - target: {fileID: 4318776277104142, guid: 1f6df54a6b4f572498efa73e78fbe89c, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114140708199133136, guid: 1f6df54a6b4f572498efa73e78fbe89c,
-        type: 2}
-      propertyPath: Delay
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f6df54a6b4f572498efa73e78fbe89c, type: 2}

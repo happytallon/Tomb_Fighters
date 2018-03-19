@@ -17,18 +17,23 @@ public class GameController : MonoBehaviour
     //PowerUps
     public float PowerUpDelay;
     public float _currentPowerUpDelay;
+
     public List<GameObject> PowerUps_Objects;
     public List<float> PowerUps_Probability;
+    public List<AudioClip> PowerUps_AudioClip;
     private Dictionary<GameObject, float> _powerUps = new Dictionary<GameObject, float>();
+
     public bool PowerUpActive;
     public List<GameObject> PlayerBarriers = new List<GameObject>();
     public List<GameObject> EnemyBarriers = new List<GameObject>();
 
+    //Audio
+    private AudioSource _music;
+    private AudioSource _powerUp_sfx;
 
     //Controllers
     private PlayerController _playerController;
     private EnemyController _enemyController;
-    private GameController _gameController;
 
     //Canvas
     private Transform _playerUI;
@@ -39,7 +44,7 @@ public class GameController : MonoBehaviour
     //Informations
     public bool IsPlayerTurn;
     public bool UpdateBarrier = true;
-        
+
     void Start()
     {
         //ball
@@ -48,7 +53,7 @@ public class GameController : MonoBehaviour
         //controllers
         _playerController = Player.GetComponent<PlayerController>();
         _enemyController = Enemy.GetComponent<EnemyController>();
-        _gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        //_gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         //canvas
         _playerUI = Canvas.transform.Find("PlayerUI");
@@ -59,6 +64,11 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < PowerUps_Objects.Count; i++)
             _powerUps.Add(PowerUps_Objects[i], PowerUps_Probability[i]);
+
+        //audio
+        var audioSources = GetComponents<AudioSource>();
+        _music = audioSources[0];
+        _powerUp_sfx = audioSources[1];
 
         UpdateCanvas();
     }
@@ -141,5 +151,11 @@ public class GameController : MonoBehaviour
     {
         _playerLifes.text = _playerController.Lifes().ToString();
         _enemyLifes.text = _enemyController.Lifes().ToString();
+    }
+
+    public void PlayPowerUpSfx(string powerUp)
+    {
+        _powerUp_sfx.clip = PowerUps_AudioClip.Find(_ => _.name == "sfx_" + powerUp);
+        _powerUp_sfx.Play();
     }
 }
